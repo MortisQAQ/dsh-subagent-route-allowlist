@@ -1,0 +1,27 @@
+{
+  "name": "dsh-subagent-route-allowlist",
+  "version": "0.1.0",
+  "description": "Builds the per-Session subagent model allowlist at session start: auto-discovers the LLM catalog, always includes the session's own route, and records the durable subagent/model-selection-policy the subagent tool enforces.",
+  "type": "module",
+  "main": "lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib/index.js",
+    "cordis.patch.yml",
+    "README.md"
+  ],
+  "keywords": [
+    "deepseek-harness",
+    "dsh",
+    "dsh-plugin",
+    "subagent",
+    "model-selection"
+  ],
+  "license": "MIT",
+  "peerDependencies": {
+    "@deepseek-ai/cordis": "~4.1.0"
+  }
+}

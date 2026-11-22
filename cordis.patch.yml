@@ -1,0 +1,36 @@
+# dsh-subagent-route-allowlist — bundle patch.
+#
+# This bundle only declares the entry. The effective allowlist rules live in the
+# entry config: either here (defaults), or overridden by id in the profile's
+# cordis.patch.yml:
+#
+#   - id: subagent-route-allowlist
+#     name: dsh-subagent-route-allowlist
+#     config:
+#       discovery:
+#         providers: ["easy-cliproxyapi"]   # or ["*"] for every registered provider
+#       explicit:
+#         - provider: easy-cliproxyapi
+#           model: deepseek-v4.1-flash
+#
+# NOTE: this bundle is meant to REPLACE the static list written by
+# @deepseek-ai/dsh-tool-subagent/model-selection-settings. Set that entry to
+# `enabled: false` (keep it mounted — it still handles subagent inheritance and
+# backs the GUI settings page), otherwise whichever plugin writes the policy
+# event first wins for a given Session.
+- insert:
+    - id: subagent-route-allowlist
+      name: dsh-subagent-route-allowlist
+      config:
+        enabled: true
+        includeSessionRoute: true
+        includeResumed: true
+        inheritForSubagents: true
+        maxRoutes: 40
+        explicit: []
+        exclude: []
+        discovery:
+          enabled: true
+          providers: ["*"]
+          timeoutMs: 1500
+          cacheTtlMs: 300000
